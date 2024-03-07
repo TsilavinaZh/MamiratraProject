@@ -3,8 +3,6 @@ import { Button, Container, CssBaseline, Typography, Paper, Grid } from '@mui/ma
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CallIcon from '@mui/icons-material/Call';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import PersonIcon from '@mui/icons-material/Person';
 
 const theme = createTheme({
   palette: {
@@ -20,14 +18,12 @@ const theme = createTheme({
 
 function App() {
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [showIcon, setShowIcon] = useState(false);
 
   const generatePhoneNumber = () => {
     const min = 222222222;
     const max = 99999999;
     const randomPhoneNumber = Math.floor(Math.random() * (max - min + 1)) + min;
     setPhoneNumber('034' + randomPhoneNumber);
-    setShowIcon(true);
   };
 
   const handleCall = () => {
@@ -47,7 +43,7 @@ function App() {
             </Grid>
             <Grid item xs={12}>
               <Typography variant="h4" align="center" gutterBottom>
-                {showIcon && <PersonIcon sx={{ fontSize: 150 }} />} <br />{phoneNumber}
+                {phoneNumber}
               </Typography>
             </Grid>
             <Grid item xs={12} md={6} textAlign="center">
