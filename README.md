@@ -39,6 +39,6 @@ npm run dev
 - React
 - React Router DOM
 
-## Thanks
+## Thanks you
 
 Thank you for checking out this project! If you find any issues or have suggestions for improvement, feel free to open an issue or submit a pull request.
