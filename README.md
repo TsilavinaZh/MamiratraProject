@@ -11,19 +11,20 @@ This is a simple Todo List application built with React.
 ## Installation
 
 1. Clone the repository:
+```bash
+git clone https://github.com/TsilavinaZh/Todo-Application
 
-git clone https://github.com/TsilavinaZh/Todo-Application.git
-
-
+```
 2. Navigate into the project directory:
 
+```bash
 cd Todo-Application
-
-
+```
 3. Install dependencies:
 
+```bash
 npm run dev
-
+```
 4. Open in your browser to view the app.
 
 ## Usage
