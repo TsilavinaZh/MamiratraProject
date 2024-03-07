@@ -34,20 +34,6 @@ npm run dev
 - Click the "Delete" button next to a todo to delete it.
 - Click the "Delete All" button to delete all todos.
 
-## Directory Structure
-
-todo-list-app/
-├── src/
-│ ├── assets/
-│ │ └── style.css
-│ ├── Component.jsx
-│ ├── TodoList.jsx
-│ └── App.jsx
-├── public/
-│ └── index.html
-├── package.json
-├── package-lock.json
-└── README.md
 ## Technologies Used
 
 - React
