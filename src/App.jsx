@@ -23,8 +23,8 @@ function App() {
   const [showIcon, setShowIcon] = useState(false);
 
   const generatePhoneNumber = () => {
-    const min = 222222222;
-    const max = 99999999;
+    const min = 2222222;
+    const max = 9999999;
     const randomPhoneNumber = Math.floor(Math.random() * (max - min + 1)) + min;
     setPhoneNumber('034' + randomPhoneNumber);
     setShowIcon(true);
