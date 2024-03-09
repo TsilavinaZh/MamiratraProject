@@ -1,83 +1,79 @@
-import React, { useState } from 'react';
-import { Button, Container, CssBaseline, Typography, Paper, Grid } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CallIcon from '@mui/icons-material/Call';
-import ShuffleIcon from '@mui/icons-material/Shuffle';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import PersonIcon from '@mui/icons-material/Person';
+import React, { useState, useEffect } from 'react';
 
-const theme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9',
-    },
-    secondary: {
-      main: '#22C55E', 
-    }
-  },
-});
+const GameBoard = () => {
+  const [board, setBoard] = useState(Array(9).fill(null));
+  const [currentPlayer, setCurrentPlayer] = useState('X');
+  const [gameOver, setGameOver] = useState(false);
 
-function App() {
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [showIcon, setShowIcon] = useState(false);
+  useEffect(() => {
+    checkForWinner();
+    checkIfTie();
+  }, [board]);
 
-  const generatePhoneNumber = () => {
-    const min = 2222222;
-    const max = 9999999;
-    const randomPhoneNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-    setPhoneNumber('034' + randomPhoneNumber);
-    setShowIcon(true);
+  const handlePress = (index) => {
+    if (board[index] || gameOver) return;
+    const newBoard = [...board];
+    newBoard[index] = currentPlayer;
+    setBoard(newBoard);
+    setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
   };
 
-  const handleCall = () => {
-    window.open(`tel:${phoneNumber}`);
+  const checkForWinner = () => {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+        alert(`Player ${board[a]} has won!`);
+        setGameOver(true);
+        return;
+      }
+    }
+  };
+
+  const checkIfTie = () => {
+    if (board.every(cell => cell !== null) && !gameOver) {
+      alert("It's a tie!");
+      setGameOver(true);
+    }
+  };
+
+  const resetGame = () => {
+    setBoard(Array(9).fill(null));
+    setCurrentPlayer('X');
+    setGameOver(false);
+  };
+
+  const renderCell = (index) => {
+    return (
+      <div key={index} className="cell" onClick={() => handlePress(index)}>
+        {board[index]}
+      </div>
+    );
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Container maxWidth="sm" sx={{ mt: 8 }}>
-        <Paper elevation={3} sx={{ padding: 3 }}>
-          <Grid container spacing={2} justifyContent="center" alignItems="center">
-            <Grid item xs={12}>
-              <Typography variant="h3" align="center" gutterBottom>
-                Random Call
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="h4" align="center" gutterBottom>
-                {showIcon && <PersonIcon sx={{ fontSize: 150 }} />} <br />{phoneNumber}
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={6} textAlign="center">
-              <Button
-                variant="contained"
-                startIcon={<ShuffleIcon />}
-                sx={{ bgcolor: 'primary.main', color: 'white' }}
-                fullWidth
-                onClick={generatePhoneNumber}
-              >
-                Générer
-              </Button>
-            </Grid>
-            <Grid item xs={12} md={6} textAlign="center">
-              <Button
-                variant="contained"
-                startIcon={<CallIcon />}
-                sx={{ bgcolor: 'secondary.main' }}
-                fullWidth
-                onClick={handleCall}
-                disabled={!phoneNumber}
-              >
-                Appeler
-              </Button>
-            </Grid>
-          </Grid>
-        </Paper>
-      </Container>
-    </ThemeProvider>
+    
+    <div className='body'>
+      <div className="container">
+      <h1 className='world'>Tik Tak</h1>
+      <div className="board">
+        {Array(9).fill(null).map((_, index) => renderCell(index))}
+      </div>
+      <button className="resetButton" onClick={resetGame}>
+        Reset Game
+      </button>
+    </div>
+    </div>
   );
-}
+};
 
-export default App;
+export default GameBoard;
