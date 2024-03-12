@@ -9,8 +9,8 @@ function Graphic() {
             <h3>Statistique</h3>
           </div>
           <div class="chart-responsive">
-            <h1>hell</h1>
-           </div>
+
+          </div>
         </div>
       </div>
 
