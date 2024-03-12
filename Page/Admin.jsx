@@ -28,7 +28,7 @@ function Admin() {
                     <div class='text-center'>
                         <a href="login.html">Or sign in as a different user</a>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
