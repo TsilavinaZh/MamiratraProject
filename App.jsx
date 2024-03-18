@@ -1,12 +1,13 @@
 import React from "react";
-import Pakage from "./Pakage";
 
 function App() {
-    return (
-        < >
-        <Pakage />
-        </>
-    )
+  return (
+    <>
+      <div>
+
+      </div>
+    </>
+  );
 }
 
 export default App;
